@@ -175,6 +175,7 @@ class JudgeDispatcher(DispatcherBase):
             error_test_case = list(filter(lambda case: case["result"] != 0, resp["data"]))
             # ACM模式下,多个测试点全部正确则AC，否则取第一个错误的测试点的状态
             # OI模式下, 若多个测试点全部正确则AC， 若全部错误则取第一个错误测试点状态，否则为部分正确
+            # 可以在这里加入跳转链接
             if not error_test_case:
                 self.submission.result = JudgeStatus.ACCEPTED
             elif self.problem.rule_type == ProblemRuleType.ACM or len(error_test_case) == len(resp["data"]):
